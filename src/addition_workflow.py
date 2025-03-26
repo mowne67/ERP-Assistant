@@ -5,7 +5,7 @@ from langchain_community.document_loaders import PDFPlumberLoader
 from pathlib import Path
 from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
 import json
-from functions_models import User, Customer, Office
+from src.functions_models import User, Customer, Office
 from langchain_google_genai import ChatGoogleGenerativeAI
 import os
 from dotenv import load_dotenv
@@ -158,13 +158,13 @@ def add(state):
     new_entities_dicts = [entity.dict() for entity in new_entities]
 
     if state['output_schema'] == 'user':
-        json_file_path = r'users.json'
+        json_file_path = r'database/users.json'
         unique_key = 'id'
     elif state['output_schema'] == 'customer':
-        json_file_path = r'customers.json'
+        json_file_path = r'database/customers.json'
         unique_key = 'id'
     elif state['output_schema'] == 'office':
-        json_file_path = r'offices.json'
+        json_file_path = r'database/offices.json'
         unique_key = 'id'
 
     try:

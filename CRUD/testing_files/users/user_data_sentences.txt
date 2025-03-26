@@ -1,3 +1,0 @@
-User user1 (ID: 1) is a Manager in the Sales department. Their email is user1@example.com and phone number is 123-456-7890.
-User user2 (ID: 2) is a Analyst in the Marketing department. Their email is user2@example.com and phone number is 234-567-8901.
-User user3 (ID: 3) is a Developer in the IT department. Their email is user3@example.com and phone number is 345-678-9012.

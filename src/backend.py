@@ -3,9 +3,9 @@ from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
 from langgraph.graph import StateGraph, START, END
 from langgraph.graph import MessagesState
 from langgraph.checkpoint.memory import MemorySaver
-from functions_models import detect_intent, router, general_chat
-from addition_workflow import read_file, interpret, add
-from deletion_workflow import delete
+from src.functions_models import detect_intent, router, general_chat
+from src.addition_workflow import read_file, interpret, add
+from src.deletion_workflow import delete
 from pydantic import BaseModel
 from typing import Union, Optional
 import logging
