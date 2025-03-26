@@ -1,0 +1,7 @@
+John Doe (id - 1) is the CEO of the company. Reporting directly to him are Jane Smith (id - 2), the CTO; Michael Green (id - 3), the CFO; and Emily Davis (id - 4), the COO.
+
+Jane Smith (id - 2) oversees the technology department. She manages Alice Johnson (id - 5), a Senior Software Engineer, and Bob Brown (id - 6), a Software Engineer.
+
+Michael Green (id - 3) is responsible for the finance department. He supervises Sarah White (id - 7), the Finance Manager, and Tom Black (id - 8), an Accountant.
+
+Emily Davis (id - 4) handles operations. She leads Karen Wilson (id - 9), the Operations Manager, and Chris Taylor (id - 10), the Logistics Coordinator.

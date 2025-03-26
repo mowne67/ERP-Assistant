@@ -1,0 +1,3 @@
+Office New York Office (ID: 1) has a size of 5000 square feet.
+Office Los Angeles Office (ID: 2) has a size of 3000 square feet.
+Office San Francisco Office (ID: 3) has a size of 4000 square feet.

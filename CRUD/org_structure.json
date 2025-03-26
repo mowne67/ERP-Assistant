@@ -1,0 +1,87 @@
+{
+    "employees": [
+        {
+            "id": "1",
+            "name": "John Doe",
+            "age": null,
+            "position": "CEO",
+            "reportees": [
+                "2",
+                "3",
+                "4"
+            ]
+        },
+        {
+            "id": "2",
+            "name": "Jane Smith",
+            "age": null,
+            "position": "CTO",
+            "reportees": [
+                "5",
+                "6"
+            ]
+        },
+        {
+            "id": "3",
+            "name": "Michael Green",
+            "age": null,
+            "position": "CFO",
+            "reportees": [
+                "7",
+                "8"
+            ]
+        },
+        {
+            "id": "4",
+            "name": "Emily Davis",
+            "age": null,
+            "position": "COO",
+            "reportees": [
+                "9",
+                "10"
+            ]
+        },
+        {
+            "id": "5",
+            "name": "Alice Johnson",
+            "age": null,
+            "position": "Senior Software Engineer",
+            "reportees": []
+        },
+        {
+            "id": "6",
+            "name": "Bob Brown",
+            "age": null,
+            "position": "Software Engineer",
+            "reportees": []
+        },
+        {
+            "id": "7",
+            "name": "Sarah White",
+            "age": null,
+            "position": "Finance Manager",
+            "reportees": []
+        },
+        {
+            "id": "8",
+            "name": "Tom Black",
+            "age": null,
+            "position": "Accountant",
+            "reportees": []
+        },
+        {
+            "id": "9",
+            "name": "Karen Wilson",
+            "age": null,
+            "position": "Operations Manager",
+            "reportees": []
+        },
+        {
+            "id": "10",
+            "name": "Chris Taylor",
+            "age": null,
+            "position": "Logistics Coordinator",
+            "reportees": []
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "location": "New York",
+        "size": 5000
+    },
+    {
+        "id": 2,
+        "location": "San Francisco",
+        "size": 3000
+    },
+    {
+        "id": 3,
+        "location": "Chicago",
+        "size": 4000
+    }
+]

@@ -1,0 +1,4 @@
+id,name,address1,address2,city,state,zip,country,county
+1,Customer A,123 Main St,Apt 4B,New York,NY,10001,USA,New York
+2,Customer B,456 Broadway,,Los Angeles,CA,90001,USA,Los Angeles
+3,Customer C,789 Market St,Suite 500,San Francisco,CA,94103,USA,San Francisco
