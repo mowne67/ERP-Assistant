@@ -1,0 +1,32 @@
+digraph {
+	rankdir=TB size=10
+	1 [label="John Doe
+(CEO)" shape=box style=rounded]
+	1 -> 2
+	1 -> 3
+	1 -> 4
+	2 [label="Jane Smith
+(CTO)" shape=box style=rounded]
+	2 -> 5
+	2 -> 6
+	3 [label="Michael Green
+(CFO)" shape=box style=rounded]
+	3 -> 7
+	3 -> 8
+	4 [label="Emily Davis
+(COO)" shape=box style=rounded]
+	4 -> 9
+	4 -> 10
+	5 [label="Alice Johnson
+(Senior Software Engineer)" shape=box style=rounded]
+	6 [label="Bob Brown
+(Software Engineer)" shape=box style=rounded]
+	7 [label="Sarah White
+(Finance Manager)" shape=box style=rounded]
+	8 [label="Tom Black
+(Accountant)" shape=box style=rounded]
+	9 [label="Karen Wilson
+(Operations Manager)" shape=box style=rounded]
+	10 [label="Chris Taylor
+(Logistics Coordinator)" shape=box style=rounded]
+}

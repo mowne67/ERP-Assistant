@@ -1,0 +1,4 @@
+id,username,email,designation,department,phone
+1,user1,user1@example.com,Manager,Sales,123-456-7890
+2,user2,user2@example.com,Analyst,Marketing,234-567-8901
+3,user3,user3@example.com,Developer,IT,345-678-9012
