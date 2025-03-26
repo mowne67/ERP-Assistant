@@ -2,9 +2,9 @@ import streamlit as st
 
 pages = {
     "Navigation": [
-        st.Page("chatbot.py", title="Chatbot"),
-        st.Page("show.py", title="Show Users, Customers, and Offices"),
-        st.Page("org_chart.py", title="Organizational Chart creation"),
+        st.Page("src/chatbot.py", title="Chatbot"),
+        st.Page("src/show.py", title="Show Users, Customers, and Offices"),
+        st.Page("src/org_chart.py", title="Organizational Chart creation"),
     ]
 
 }

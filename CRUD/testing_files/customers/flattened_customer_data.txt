@@ -1,3 +1,0 @@
-Customer Customer A (ID: 1) is located at 123 Main St, Apt 4B, New York, NY with ZIP code 10001. The country is USA and county is New York.
-Customer Customer B (ID: 2) is located at 456 Broadway, , Los Angeles, CA with ZIP code 90001. The country is USA and county is Los Angeles.
-Customer Customer C (ID: 3) is located at 789 Market St, Suite 500, San Francisco, CA with ZIP code 94103. The country is USA and county is San Francisco.
