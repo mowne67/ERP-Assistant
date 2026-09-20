@@ -1,10 +1,8 @@
-pandas
 langchain-core
 langchain-community
 langchain_google_genai
-google-generativeai
 langgraph
-dotenv
+python-dotenv
 fastapi
 openpyxl
 streamlit
