@@ -43,7 +43,6 @@ graph.add_node("general_chat", general_chat)
 
 graph.add_edge(START, "detect_intent")
 graph.add_conditional_edges("detect_intent", router)
-graph.add_conditional_edges("detect_intent", general_chat)
 graph.add_edge("read_file", "interpret")
 graph.add_edge("interpret", "add")
 graph.add_edge("add", END)
@@ -51,7 +50,6 @@ graph.add_edge("delete", END)
 graph.add_edge("general_chat", END)
 
 checkpointer = MemorySaver()
-config = {"configurable": {"thread_id": "1"}}
 workflow = graph.compile(checkpointer=checkpointer)
 
 class ChatInput(BaseModel):
@@ -61,6 +59,7 @@ class ChatInput(BaseModel):
 @app.post("/chat/")
 async def chat(chat_input: ChatInput):
     chat_text = chat_input.input_text
+    config = {"configurable": {"thread_id": "api"}}
     if chat_input.file_path is not None:
         output = workflow.invoke({
             'messages': HumanMessage(content=chat_text),

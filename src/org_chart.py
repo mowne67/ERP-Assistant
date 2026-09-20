@@ -2,7 +2,6 @@ from __future__ import annotations
 import streamlit as st
 from typing import Optional, List
 from pydantic import BaseModel
-from langchain.schema import SystemMessage
 from langchain_google_genai import ChatGoogleGenerativeAI
 import os
 from dotenv import load_dotenv
@@ -12,8 +11,6 @@ import plotly.graph_objects as go
 
 # Load environment variables
 load_dotenv()
-import google.generativeai as genai
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
 # Define Employee and EmployeeList models
 class Employee(BaseModel):
@@ -37,7 +34,9 @@ def extract_structure(transcription: str) -> EmployeeList:
     Transcription:
     {transcription}
     """
-    llm = ChatGoogleGenerativeAI(model="models/gemini-2.0-flash", temperature=0.0)
+    if not os.getenv("GOOGLE_API_KEY"):
+        raise RuntimeError("GOOGLE_API_KEY is not configured in Streamlit secrets.")
+    llm = ChatGoogleGenerativeAI(model="gemini-3.6-flash", temperature=0.0)
     response = llm.with_structured_output(EmployeeList).invoke(prompt)
 
     return response

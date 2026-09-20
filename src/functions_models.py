@@ -1,20 +1,20 @@
 from langchain_anthropic import ChatAnthropic  # For ChatAnthropic
 from pydantic import BaseModel, Field
 from typing import List, Annotated, Optional, Union, Literal
-from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
+from langchain_core.messages import SystemMessage
 import json
 
-from langchain_google_genai import ChatGoogleGenerativeAI
 import os
+from functools import lru_cache
 from dotenv import load_dotenv
 load_dotenv()
-import google.generativeai as genai
 
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-os.environ['ANTHROPIC_API_KEY'] = os.getenv("ANTHROPIC_API_KEY")
-
-#llm = ChatGoogleGenerativeAI(model="models/gemini-2.0-flash", temperature=0.0)
-llm = ChatAnthropic(model="claude-3-5-sonnet-20240620", temperature=0.0)
+@lru_cache
+def get_llm():
+    api_key = os.getenv("ANTHROPIC_API_KEY")
+    if not api_key:
+        raise RuntimeError("ANTHROPIC_API_KEY is not configured in Streamlit secrets.")
+    return ChatAnthropic(model="claude-sonnet-4-6", temperature=0.0, api_key=api_key)
 
 class User(BaseModel):
     id: int = Field(..., description="Unique  ID")
@@ -54,7 +54,7 @@ def detect_intent(state):
     "This node will detect intent"
 
     chat_input = state['messages'][-1].content
-    response = llm.with_structured_output(IntentEntityPath).invoke(chat_input)
+    response = get_llm().with_structured_output(IntentEntityPath).invoke(chat_input)
 
     return {
         #'file_path': response.addition_file_path, 
@@ -88,9 +88,5 @@ def general_chat(state):
     Always circle back to what the user wants to do in terms of adding or deleting entities.
     """
     system_message = SystemMessage(content=prompt)
-    response = llm.invoke([system_message] + messages_state)
-    return {'messages': response.content}
-
-
-
-
+    response = get_llm().invoke([system_message] + messages_state)
+    return {'messages': response}
