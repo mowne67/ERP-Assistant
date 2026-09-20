@@ -1,7 +1,10 @@
 import streamlit as st
 import time
-import requests
 import os
+import uuid
+
+from langchain_core.messages import HumanMessage
+from src.backend import workflow
 
 st.set_page_config(page_title="CRUD Chatbot", page_icon="🤖", layout="wide")
 st.title("CRUD Assistant")
@@ -24,28 +27,23 @@ with st.sidebar:
 user_input = st.chat_input("")
 
 if 'chat_history' not in st.session_state:
-    st.session_state['chat_history'] = []
-    try:
-        # Send "Hi" to the API
-        response = requests.post("http://127.0.0.1:8000/chat/", json={"input_text": "Hi"})
-        output = response.json()
-        # Add the bot's response to the chat history
-        st.session_state['chat_history'].append({'bot': output})
-    except:
-        st.session_state['chat_history'].append({'bot': "There seems to be a problem. Please try again."})
+    st.session_state['chat_history'] = [{
+        'bot': "Hi! Upload a file to add ERP records, or ask me to delete or explain data."
+    }]
+    st.session_state['thread_id'] = str(uuid.uuid4())
 
 if user_input:
     instance = {'user':user_input}
-    if uploaded_file:
-        try:
-            response = requests.post("http://127.0.0.1:8000/chat/", json= {"input_text": user_input, "file_path": file_path})
-            output = response.json()
-        except: output = "There seems to be a problem. Please try again."    
-    else: 
-        try:
-            response = requests.post("http://127.0.0.1:8000/chat/", json= {"input_text": user_input})
-            output = response.json()
-        except: output = "There seems to be a problem. Please try again."
+    try:
+        state = {'messages': HumanMessage(content=user_input)}
+        if uploaded_file:
+            state['file_path'] = file_path
+        output = workflow.invoke(
+            state,
+            {"configurable": {"thread_id": st.session_state['thread_id']}},
+        )['messages'][-1].content
+    except Exception as error:
+        output = f"There seems to be a problem: {error}"
        
     
     instance['bot'] = output
@@ -66,4 +64,3 @@ for index, chat in enumerate(st.session_state['chat_history']):
                 st.write_stream(stream_data)
             else:
                 st.write(chat['bot'])
-

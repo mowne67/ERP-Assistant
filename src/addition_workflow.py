@@ -1,22 +1,10 @@
 import pandas as pd
-from langchain_anthropic import ChatAnthropic  # For ChatAnthropic
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 from langchain_community.document_loaders import PDFPlumberLoader
 from pathlib import Path
-from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
+from langchain_core.messages import AIMessage
 import json
-from src.functions_models import User, Customer, Office
-from langchain_google_genai import ChatGoogleGenerativeAI
-import os
-from dotenv import load_dotenv
-load_dotenv()
-import google.generativeai as genai
-
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-os.environ['ANTHROPIC_API_KEY'] = os.getenv("ANTHROPIC_API_KEY")
-
-#llm = ChatGoogleGenerativeAI(model="models/gemini-2.0-flash", temperature=0.0)
-llm = ChatAnthropic(model="claude-3-5-sonnet-20240620", temperature=0.0)
+from src.functions_models import User, Customer, Office, get_llm
 
 def read_file(state):
 
@@ -120,7 +108,7 @@ def interpret(state):
                 return {'result_json': [{"error": "Invalid output schema provided."}]}
 
             # Invoke the LLM for the current chunk
-            response = llm.with_structured_output(Entitylist).invoke(prompt)
+            response = get_llm().with_structured_output(Entitylist).invoke(prompt)
             combined_entities.extend(response.entities)
 
         # Combine all entities into the result_json
@@ -143,7 +131,7 @@ def interpret(state):
     else:
         return {'result_json': [{"error": "Invalid output schema provided."}]}
 
-    response = llm.with_structured_output(Entitylist).invoke(prompt)
+    response = get_llm().with_structured_output(Entitylist).invoke(prompt)
     return {'result_json': response.entities}
 
 def add(state):
@@ -206,4 +194,3 @@ def add(state):
     
     message = ". ".join(message_parts) + "."
     return {'messages': AIMessage(content=message)}
-    
